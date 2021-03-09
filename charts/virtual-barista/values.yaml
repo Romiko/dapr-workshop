@@ -1,0 +1,8 @@
+deployment:
+  replicas: 1
+  image:
+    registry: ghcr.io
+    name: azurevigilantes/dapr-workshop/csharp/virtual-barista
+    tag: latest
+    pullPolicy: Always
+  containerPort: 80

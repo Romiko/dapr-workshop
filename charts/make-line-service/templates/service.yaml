@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: make-line-service
+  namespace: {{.Release.Namespace}}
+  labels:
+    app: make-line-service
+spec:
+  selector:
+    app: make-line-service
+  ports:
+    - protocol: TCP
+      port: {{.Values.service.port}}
+      targetPort: {{.Values.service.targetPort}}
+  type: ClusterIP

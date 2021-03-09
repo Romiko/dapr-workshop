@@ -1,0 +1,15 @@
+dnsName: dapr-workshop.vigilantes.dev
+tlsCertSecretName: vigilantes-dev-tls
+
+service:
+  port: 80
+  targetPort: 8080
+
+deployment:
+  replicas: 1
+  image:
+    registry: ghcr.io
+    name: azurevigilantes/dapr-workshop/node/ui
+    tag: latest
+    pullPolicy: Always
+  containerPort: 8080

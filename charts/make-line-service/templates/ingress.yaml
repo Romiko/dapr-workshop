@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-makeline-service
+  namespace: {{.Release.Namespace}}
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    cert-manager.io/issuer: letsencrypt-prod
+spec:
+  tls:
+    - hosts:
+        - {{.Values.dnsName}}
+      secretName: {{.Values.tlsCertSecretName}}
+  rules:
+    - host: {{.Values.dnsName}}
+      http:
+        paths:
+          - path: /makeline(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: make-line-service
+                port: 
+                  number: 80

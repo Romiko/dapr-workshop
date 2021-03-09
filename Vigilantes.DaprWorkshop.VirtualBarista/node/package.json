@@ -1,0 +1,12 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "Virtual Barista",
+  "author": "Azure Vigilantes",
+  "main": "app.js",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "debug": "~2.6.9",
+    "express": "^4.16.4"
+  }
+}

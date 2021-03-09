@@ -1,0 +1,318 @@
+{
+    // Use IntelliSense to find out which attributes exist for C# debugging
+    // Use hover for the description of the existing attributes
+    // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug OrderService (golang)",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "preLaunchTask": "Build OrderService (golang)",
+            "program": "${workspaceFolder}/Vigilantes.DaprWorkshop.OrderService/golang/main.go",
+            "env": {},
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "^\\s*Now listening on:\\s+(https?://\\S+)"
+            }
+        },
+        {
+            "name": "Debug MakeLineService (golang)",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "preLaunchTask": "Build MakeLineService (golang)",
+            "program": "${workspaceFolder}/Vigilantes.DaprWorkshop.MakeLineService/golang/main.go",
+            "env": {},
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "^\\s*Now listening on:\\s+(https?://\\S+)"
+            }
+        },
+        {
+            "name": "Debug ReceiptGenerationService (golang)",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "preLaunchTask": "Build ReceiptGenerationService (golang)",
+            "program": "${workspaceFolder}/Vigilantes.DaprWorkshop.ReceiptGenerationService/golang/main.go",
+            "env": {},
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "^\\s*Now listening on:\\s+(https?://\\S+)"
+            }
+        },
+        {
+            "name": "Debug LoyaltyService (golang)",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "preLaunchTask": "Build LoyaltyService (golang)",
+            "program": "${workspaceFolder}/Vigilantes.DaprWorkshop.LoyaltyService/golang/main.go",
+            "env": {},
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "^\\s*Now listening on:\\s+(https?://\\S+)"
+            }
+        },
+        {
+            "name": "Debug VirtualBarista (golang)",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "preLaunchTask": "Build VirtualBarista (golang)",
+            "program": "${workspaceFolder}/Vigilantes.DaprWorkshop.VirtualBarista/golang/main.go",
+            "env": {},
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "^\\s*Now listening on:\\s+(https?://\\S+)"
+            }
+        },        
+        {
+            "name": "Debug OrderService (java)",
+            "type": "java",
+            "request": "launch",
+            "mainClass": "vigilantes.daprworkshop.orderservice.OrderServiceApplication",
+            "preLaunchTask": "Build OrderService (java)",
+            "vmArgs": "-Djava.net.preferIPv4Stack=true -Djava.net.preferIPv6Addresses=false"
+        },
+        {
+            "name": "Debug MakeLineService (java)",
+            "type": "java",
+            "request": "launch",
+            "mainClass": "vigilantes.daprworkshop.makelineservice.MakelineServiceApplication",
+            "preLaunchTask": "Build MakeLineService (java)",
+            "vmArgs": "-Djava.net.preferIPv4Stack=true -Djava.net.preferIPv6Addresses=false"
+        },
+        {
+            "name": "Debug ReceiptGenerationService (java)",
+            "type": "java",
+            "request": "launch",
+            "mainClass": "vigilantes.daprworkshop.receiptservice.ReceiptServiceApplication",
+            "preLaunchTask": "Build ReceiptGenerationService (java)",
+            "vmArgs": "-Djava.net.preferIPv4Stack=true -Djava.net.preferIPv6Addresses=false"
+        },
+        {
+            "name": "Debug LoyaltyService (java)",
+            "type": "java",
+            "request": "launch",
+            "mainClass": "vigilantes.daprworkshop.loyaltyservice.LoyaltyServiceApplication",
+            "preLaunchTask": "Build LoyaltyService (java)",
+            "vmArgs": "-Djava.net.preferIPv4Stack=true -Djava.net.preferIPv6Addresses=false"
+        },
+        {
+            "name": "Debug VirtualBarista (java)",
+            "type": "java",
+            "request": "launch",
+            "mainClass": "vigilantes.daprworkshop.virtualbarista.VirtualBaristaApplication",
+            "preLaunchTask": "Build VirtualBarista (java)",
+            "vmArgs": "-Djava.net.preferIPv4Stack=true -Djava.net.preferIPv6Addresses=false"
+        },
+        {
+            "name": "Debug OrderService (netcore)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "Build OrderService (netcore)",
+            "program": "${workspaceFolder}/Vigilantes.DaprWorkshop.OrderService/csharp/bin/Debug/netcoreapp3.1/Vigilantes.DaprWorkshop.OrderService.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Vigilantes.DaprWorkshop.OrderService/csharp",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "ASPNETCORE_URLS": "http://127.0.0.1:5100;https://127.0.0.1:5102",
+                "DAPR_HTTP_PORT": "5180"
+            }
+        },
+        {
+            "name": "Debug MakeLineService (netcore)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "Build MakeLineService (netcore)",
+            "program": "${workspaceFolder}/Vigilantes.DaprWorkshop.MakeLineService/csharp/bin/Debug/netcoreapp3.1/Vigilantes.DaprWorkshop.MakeLineService.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Vigilantes.DaprWorkshop.MakeLineService/csharp",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "ASPNETCORE_URLS": "http://127.0.0.1:5200",
+                "DAPR_HTTP_PORT": "5280"
+            }
+        },
+        {
+            "name": "Debug ReceiptGenerationService (netcore)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "Build ReceiptGenerationService (netcore)",
+            "program": "${workspaceFolder}/Vigilantes.DaprWorkshop.ReceiptGenerationService/csharp/bin/Debug/netcoreapp3.1/Vigilantes.DaprWorkshop.ReceiptGenerationService.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Vigilantes.DaprWorkshop.ReceiptGenerationService/csharp",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "ASPNETCORE_URLS": "http://127.0.0.1:5300",
+                "DAPR_HTTP_PORT": "5380"
+            }
+        },
+        {
+            "name": "Debug LoyaltyService (netcore)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "Build LoyaltyService (netcore)",
+            "program": "${workspaceFolder}/Vigilantes.DaprWorkshop.LoyaltyService/csharp/bin/Debug/netcoreapp3.1/Vigilantes.DaprWorkshop.LoyaltyService.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Vigilantes.DaprWorkshop.LoyaltyService/csharp",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "ASPNETCORE_URLS": "http://127.0.0.1:5400",
+                "DAPR_HTTP_PORT": "5480"
+            }
+        },
+        {
+            "name": "Debug VirtualBarista (netcore)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "Build VirtualBarista (netcore)",
+            "program": "${workspaceFolder}/Vigilantes.DaprWorkshop.VirtualBarista/csharp/bin/Debug/netcoreapp3.1/Vigilantes.DaprWorkshop.VirtualBarista.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Vigilantes.DaprWorkshop.VirtualBarista/csharp",
+            "stopAtEntry": false,
+            "env": {
+                "DOTNETCORE_ENVIRONMENT": "Development",
+                "ASPNETCORE_URLS": "http://127.0.0.1:5500",
+                "DAPR_HTTP_PORT": "5580"
+            }
+        },
+        {
+            "name": "Debug VirtualCustomers (netcore)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "Build VirtualCustomers (netcore)",
+            "program": "${workspaceFolder}/Vigilantes.DaprWorkshop.VirtualCustomers/csharp/bin/Debug/netcoreapp3.1/Vigilantes.DaprWorkshop.VirtualCustomers.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Vigilantes.DaprWorkshop.VirtualCustomers/csharp",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "DAPR_HTTP_PORT": "5680"
+            }
+        },
+        {
+            "name": "Debug OrderService (nodejs)",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/Vigilantes.DaprWorkshop.OrderService/node/bin/www",
+            "env": {
+                "DAPR_HTTP_PORT": "5180"
+            },
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
+        {
+            "name": "Debug MakeLineService (nodejs)",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/Vigilantes.DaprWorkshop.MakeLineService/node/bin/www",
+            "env": {
+                "DAPR_HTTP_PORT": "5280"
+            },            
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
+        {
+            "name": "Debug ReceiptGenerationService (nodejs)",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/Vigilantes.DaprWorkshop.ReceiptGenerationService/node/bin/www",
+            "env": {
+                "DAPR_HTTP_PORT": "5380"
+            },            
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
+        {
+            "name": "Debug LoyaltyService (nodejs)",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/Vigilantes.DaprWorkshop.LoyaltyService/node/bin/www",
+            "env": {
+                "DAPR_HTTP_PORT": "5480"
+            },            
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
+        {
+            "name": "Debug VirtualBarista (nodejs)",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/Vigilantes.DaprWorkshop.VirtualBarista/node",
+            "env": {
+                "DAPR_HTTP_PORT": "5580"
+            },            
+            "skipFiles": [
+                "<node_internals>/**"
+            ]                 
+        },
+    ],
+    "compounds": [
+        {
+            "name": "Debug All Services (golang)",
+            "configurations": [
+                "Debug OrderService (golang)",
+                "Debug MakeLineService (golang)",
+                "Debug ReceiptGenerationService (golang)",
+                "Debug LoyaltyService (golang)",
+                "Debug VirtualBarista (golang)",
+                "Debug VirtualCustomers (netcore)"
+            ]
+        },
+        {
+            "name": "Debug All Services (java)",
+            "configurations": [
+                "Debug OrderService (java)",
+                "Debug MakeLineService (java)",
+                "Debug ReceiptGenerationService (java)",
+                "Debug LoyaltyService (java)",
+                "Debug VirtualBarista (java)",
+                "Debug VirtualCustomers (netcore)"
+            ]
+        },
+        {
+            "name": "Debug All Services (netcore)",
+            "configurations": [
+                "Debug OrderService (netcore)",
+                "Debug MakeLineService (netcore)",
+                "Debug ReceiptGenerationService (netcore)",
+                "Debug LoyaltyService (netcore)",
+                "Debug VirtualBarista (netcore)",
+                "Debug VirtualCustomers (netcore)"
+            ]
+        },
+        {
+            "name": "Debug All Services (nodejs)",
+            "configurations": [
+                "Debug OrderService (nodejs)",
+                "Debug MakeLineService (nodejs)",
+                "Debug ReceiptGenerationService (nodejs)",
+                "Debug LoyaltyService (nodejs)",
+                "Debug VirtualBarista (nodejs)",
+                "Debug VirtualCustomers (netcore)",
+            ]
+        }
+    ]
+}

@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-service
+  namespace: {{.Release.Namespace}}
+  labels:
+    app: order-service
+spec:
+  replicas: {{.Values.deployment.replicas}}
+  selector:
+    matchLabels:
+      app: order-service
+  template:
+    metadata:
+      labels:
+        app: order-service
+        {{- if .Values.deployment.aadPodIdentityBinding }}
+        aadpodidbinding: {{ .Values.deployment.aadPodIdentityBinding }}
+        {{- end }}
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "order-service"
+        dapr.io/app-port: "{{.Values.deployment.containerPort}}"
+        dapr.io/config: "tracing"
+    spec:
+      containers:
+        - name: order-service
+          image: "{{.Values.deployment.image.registry}}/{{.Values.deployment.image.name}}:{{.Values.deployment.image.tag}}"
+          ports:
+            - containerPort: {{.Values.deployment.containerPort}}
+          imagePullPolicy: {{.Values.deployment.image.pullPolicy}}

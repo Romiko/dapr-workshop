@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: ui
+  namespace: {{.Release.Namespace}}
+  labels:
+    app: ui
+spec:
+  selector:
+    app: ui
+  ports:
+    - protocol: TCP
+      port: {{.Values.service.port}}
+      targetPort: {{.Values.service.targetPort}}
+  type: ClusterIP

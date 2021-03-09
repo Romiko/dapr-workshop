@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: receipt-generation-service
+  namespace: {{.Release.Namespace}}
+  labels:
+    app: receipt-generation-service
+spec:
+  replicas: {{.Values.deployment.replicas}}
+  selector:
+    matchLabels:
+      app: receipt-generation-service
+  template:
+    metadata:
+      labels:
+        app: receipt-generation-service
+        {{- if .Values.deployment.aadPodIdentityBinding }}
+        aadpodidbinding: {{ .Values.deployment.aadPodIdentityBinding }}
+        {{- end }}
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "receipt-generation-service"
+        dapr.io/app-port: "{{.Values.deployment.containerPort}}"
+        dapr.io/config: "tracing"
+    spec:
+      containers:
+        - name: receipt-generation-service
+          image: "{{.Values.deployment.image.registry}}/{{.Values.deployment.image.name}}:{{.Values.deployment.image.tag}}"
+          ports:
+            - containerPort: {{.Values.deployment.containerPort}}
+          imagePullPolicy: {{.Values.deployment.image.pullPolicy}}

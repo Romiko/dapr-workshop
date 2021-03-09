@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: virtual-customers
+  namespace: {{.Release.Namespace}}
+  labels:
+    app: virtual-customers
+spec:
+  replicas: {{.Values.deployment.replicas}}
+  selector:
+    matchLabels:
+      app: virtual-customers
+  template:
+    metadata:
+      labels:
+        app: virtual-customers
+        aadpodidbinding: vigilantes-aks-msi
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "virtual-customers"
+        dapr.io/config: "tracing"
+    spec:
+      containers:
+        - name: virtual-customers
+          image: "{{.Values.deployment.image.registry}}/{{.Values.deployment.image.name}}:{{.Values.deployment.image.tag}}"
+          imagePullPolicy: {{.Values.deployment.image.pullPolicy}}

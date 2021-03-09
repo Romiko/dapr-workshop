@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: loyalty-service
+  namespace: {{.Release.Namespace}}
+  labels:
+    app: loyalty-service
+spec:
+  selector:
+    app: loyalty-service
+  ports:
+    - protocol: TCP
+      port: {{.Values.service.port}}
+      targetPort: {{.Values.service.targetPort}}
+  type: ClusterIP

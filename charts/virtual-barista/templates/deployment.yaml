@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: virtual-barista
+  namespace: {{.Release.Namespace}}
+  labels:
+    app: virtual-barista
+spec:
+  replicas: {{.Values.deployment.replicas}}
+  selector:
+    matchLabels:
+      app: virtual-barista
+  template:
+    metadata:
+      labels:
+        app: virtual-barista
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "virtual-barista"
+        dapr.io/app-port: "{{.Values.deployment.containerPort}}"
+        dapr.io/config: "tracing"
+    spec:
+      containers:
+        - name: virtual-barista
+          image: "{{.Values.deployment.image.registry}}/{{.Values.deployment.image.name}}:{{.Values.deployment.image.tag}}"
+          imagePullPolicy: {{.Values.deployment.image.pullPolicy}}

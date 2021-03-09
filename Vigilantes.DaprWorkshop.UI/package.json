@@ -1,0 +1,74 @@
+{
+  "name": "dapr.ui",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "test:unit": "vue-cli-service test:unit",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@microsoft/signalr": "^5.0.0-rc.1.20451.17",
+    "@vue/cli": "^4.5.7",
+    "axios": "^0.19.2",
+    "core-js": "^3.6.5",
+    "element-ui": "^2.13.2",
+    "vue": "^2.6.12",
+    "vue-axios": "^2.1.5",
+    "vue-resource": "^1.5.1",
+    "vue-router": "^3.4.6",
+    "vue-simple-spinner": "^1.2.10",
+    "vuex": "^3.5.1",
+    "vuex-persistedstate": "^3.1.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^4.5.7",
+    "@vue/cli-plugin-eslint": "^4.5.7",
+    "@vue/cli-plugin-router": "^4.5.7",
+    "@vue/cli-plugin-unit-jest": "^4.5.7",
+    "@vue/cli-plugin-vuex": "^4.5.7",
+    "@vue/cli-service": "^4.5.7",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "@vue/test-utils": "1.0.0-beta.31",
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.8.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-vue": "^6.2.2",
+    "prettier": "^1.19.1",
+    "vue-template-compiler": "^2.6.12"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended",
+      "@vue/prettier"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {},
+    "overrides": [
+      {
+        "files": [
+          "**/__tests__/*.{j,t}s?(x)",
+          "**/tests/unit/**/*.spec.{j,t}s?(x)"
+        ],
+        "env": {
+          "jest": true
+        }
+      }
+    ]
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ],
+  "jest": {
+    "preset": "@vue/cli-plugin-unit-jest"
+  }
+}

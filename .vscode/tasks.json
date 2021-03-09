@@ -1,0 +1,857 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        // ----- golang tasks -----
+        {
+            "label": "Build OrderService (golang)",
+            "command": "go",
+            "type": "shell",
+            "args": [
+                "build"
+            ],
+            "problemMatcher": ["$go"],
+            "options": {
+                "cwd": "${workspaceFolder}/Vigilantes.DaprWorkshop.OrderService/golang"
+            },
+            "group": "build"
+        },
+        {
+            "label": "Build MakeLineService (golang)",
+            "command": "go",
+            "type": "shell",
+            "args": [
+                "build"
+            ],
+            "problemMatcher": ["$go"],
+            "options": {
+                "cwd": "${workspaceFolder}/Vigilantes.DaprWorkshop.MakeLineService/golang"
+            },
+            "group": "build"
+        },
+        {
+            "label": "Build LoyaltyService (golang)",
+            "command": "go",
+            "type": "shell",
+            "args": [
+                "build"
+            ],
+            "problemMatcher": ["$go"],
+            "options": {
+                "cwd": "${workspaceFolder}/Vigilantes.DaprWorkshop.LoyaltyService/golang"
+            },
+            "group": "build"
+        },
+        {
+            "label": "Build ReceiptGenerationService (golang)",
+            "command": "go",
+            "type": "shell",
+            "args": [
+                "build"
+            ],
+            "problemMatcher": ["$go"],
+            "options": {
+                "cwd": "${workspaceFolder}/Vigilantes.DaprWorkshop.ReceiptGenerationService/golang"
+            },
+            "group": "build"
+        },
+        {
+            "label": "Build VirtualBarista (golang)",
+            "command": "go",
+            "type": "shell",
+            "args": [
+                "build"
+            ],
+            "problemMatcher": ["$go"],
+            "options": {
+                "cwd": "${workspaceFolder}/Vigilantes.DaprWorkshop.VirtualBarista/golang"
+            },
+            "group": "build"
+        },
+        {
+            "label": "Build Solution (golang)",
+            "dependsOn": [
+                "Build OrderService (golang)",
+                "Build MakeLineService (golang)",
+                "Build LoyaltyService (golang)",
+                "Build ReceiptGenerationService (golang)",
+                "Build VirtualBarista (golang)"
+            ],
+            "problemMatcher": []
+        },        
+        // ----- java tasks -----
+        {
+            "label": "Build OrderService (java)",
+            "command": "mvn",
+            "args": [
+                "clean",
+                "install",
+                "-f",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.OrderService/java/order-service",
+            ],
+            "problemMatcher": [],
+            "type": "shell",
+            "group": "build"
+        },
+        {
+            "label": "Build MakeLineService (java)",
+            "command": "mvn",
+            "args": [
+                "clean",
+                "install",
+                "-f",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.MakeLineService/java/makeline-service",
+            ],
+            "problemMatcher": [],
+            "type": "shell",
+            "group": "build"
+        },
+        {
+            "label": "Build ReceiptGenerationService (java)",
+            "command": "mvn",
+            "args": [
+                "clean",
+                "install",
+                "-f",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.ReceiptGenerationService/java/receipt-service",
+            ],
+            "problemMatcher": [],
+            "type": "shell",
+            "group": "build"
+        },
+        {
+            "label": "Build LoyaltyService (java)",
+            "command": "mvn",
+            "args": [
+                "clean",
+                "install",
+                "-f",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.LoyaltyService/java/loyalty-service",
+            ],
+            "problemMatcher": [],
+            "type": "shell",
+            "group": "build"
+        },
+        {
+            "label": "Build VirtualBarista (java)",
+            "command": "mvn",
+            "args": [
+                "clean",
+                "install",
+                "-f",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.VirtualBarista/java",
+            ],
+            "problemMatcher": [],
+            "type": "shell",
+            "group": "build"
+        },
+        {
+            "label": "Build Solution (java)",
+            "dependsOn": [
+                "Build OrderService (java)",
+                "Build MakeLineService (java)",
+                "Build LoyaltyService (java)",
+                "Build ReceiptGenerationService (java)",
+                "Build VirtualBarista (java)"
+            ],
+            "problemMatcher": []
+        },
+        // ----- netcore tasks -----
+        {
+            "label": "Build OrderService (netcore)",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.OrderService/csharp",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": "build"
+        },
+        {
+            "label": "Build MakeLineService (netcore)",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.MakeLineService/csharp",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": "build"
+        },
+        {
+            "label": "Build ReceiptGenerationService (netcore)",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.ReceiptGenerationService/csharp",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": "build"
+        },
+        {
+            "label": "Build LoyaltyService (netcore)",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.LoyaltyService/csharp",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": "build"
+        },
+        {
+            "label": "Build VirtualBarista (netcore)",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.VirtualBarista/csharp",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": "build"
+        },
+        {
+            "label": "Build VirtualCustomers (netcore)",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.VirtualCustomers/csharp",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": "build"
+        },
+        {
+            "label": "Build Solution (netcore)",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        // ----- nodejs tasks -----
+        {
+            "label": "Install OrderService (nodejs)",
+            "command": "npm",
+            "type": "shell",
+            "args": [
+                "install"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/Vigilantes.DaprWorkshop.OrderService/node"
+            },
+            "group": "build"
+        },
+        {
+            "label": "Install ReceiptGenerationService (nodejs)",
+            "command": "npm",
+            "type": "shell",
+            "args": [
+                "install"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/Vigilantes.DaprWorkshop.ReceiptGenerationService/node"
+            },
+            "group": "build"
+        },
+        {
+            "label": "Install LoyaltyService (nodejs)",
+            "command": "npm",
+            "type": "shell",
+            "args": [
+                "install"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/Vigilantes.DaprWorkshop.LoyaltyService/node"
+            },
+            "group": "build"
+        },
+        {
+            "label": "Install MakeLineService (nodejs)",
+            "command": "npm",
+            "type": "shell",
+            "args": [
+                "install"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/Vigilantes.DaprWorkshop.MakeLineService/node"
+            },
+            "group": "build"
+        },
+        {
+            "label": "Install VirtualBarista (nodejs)",
+            "command": "npm",
+            "type": "shell",
+            "args": [
+                "install"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/Vigilantes.DaprWorkshop.VirtualBarista/node"
+            },
+            "group": "build"
+        },
+        {
+            "label": "Install UI (nodejs)",
+            "command": "npm",
+            "type": "shell",
+            "args": [
+                "install"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/Vigilantes.DaprWorkshop.UI/"
+            },
+            "group": "build"
+        },
+        {
+            "label": "Run UI (nodejs)",
+            "type": "npm",
+            "script": "serve",
+            "path": "Vigilantes.DaprWorkshop.UI/"
+        },
+        {
+            "label": "Install Solution (nodejs)",
+            "dependsOn": [
+                "Install OrderService (nodejs)",
+                "Install MakeLineService (nodejs)",
+                "Install LoyaltyService (nodejs)",
+                "Install ReceiptGenerationService (nodejs)",
+                "Install VirtualBarista (nodejs)"
+            ],
+            "problemMatcher": []
+        },
+        // ----- dapr tasks -----
+        {
+            "label": "Dapr OrderService",
+            "command": "dapr",
+            "args": [
+                "run",
+                "--app-id",
+                "order-service",
+                "--components-path",
+                "${workspaceFolder}/components/local",
+                "--app-port",
+                "5100",
+                "--dapr-grpc-port",
+                "5101",
+                "--dapr-http-port",
+                "5180"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Dapr MakeLineService",
+            "command": "dapr",
+            "args": [
+                "run",
+                "--app-id",
+                "make-line-service",
+                "--components-path",
+                "${workspaceFolder}/components/local",
+                "--app-port",
+                "5200",
+                "--dapr-grpc-port",
+                "5201",
+                "--dapr-http-port",
+                "5280"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Dapr ReceiptGenerationService",
+            "command": "dapr",
+            "args": [
+                "run",
+                "--app-id",
+                "receipt-generation-service",
+                "--components-path",
+                "${workspaceFolder}/components/local",
+                "--app-port",
+                "5300",
+                "--dapr-grpc-port",
+                "5301",
+                "--dapr-http-port",
+                "5380"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Dapr LoyaltyService",
+            "command": "dapr",
+            "args": [
+                "run",
+                "--app-id",
+                "loyalty-service",
+                "--components-path",
+                "${workspaceFolder}/components/local",
+                "--app-port",
+                "5400",
+                "--dapr-grpc-port",
+                "5401",
+                "--dapr-http-port",
+                "5480"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Dapr VirtualBarista",
+            "command": "dapr",
+            "args": [
+                "run",
+                "--app-id",
+                "virtual-barista",
+                "--components-path",
+                "${workspaceFolder}/components/local",
+                "--app-port",
+                "5500",
+                "--dapr-grpc-port",
+                "5501",
+                "--dapr-http-port",
+                "5580"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Dapr VirtualCustomers",
+            "command": "dapr",
+            "args": [
+                "run",
+                "--app-id",
+                "virtual-customers",
+                "--components-path",
+                "${workspaceFolder}/components/local",
+                "--dapr-grpc-port",
+                "5601",
+                "--dapr-http-port",
+                "5680"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Dapr (All Services)",
+            "dependsOn": [
+                "Dapr OrderService",
+                "Dapr MakeLineService",
+                "Dapr LoyaltyService",
+                "Dapr ReceiptGenerationService",
+                "Dapr VirtualBarista",
+                "Dapr VirtualCustomers"
+            ],
+            "problemMatcher": []
+        },
+        // ----- netcore acr tasks -----
+        {
+            "label": "ACR Build OrderService (netcore)",
+            "command": "az",
+            "type": "process",
+            "args": [
+                "acr",
+                "build",
+                "-r",
+                "${input:registry}",
+                "-f",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.OrderService/csharp/Dockerfile",
+                "-t",
+                "${input:registry}.azurecr.io/dapr-workshop/order-service-csharp:${input:tagname}",
+                "Vigilantes.DaprWorkshop.OrderService/csharp"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "ACR Build MakeLineService (netcore)",
+            "command": "az",
+            "type": "process",
+            "args": [
+                "acr",
+                "build",
+                "-r",
+                "${input:registry}",
+                "-f",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.MakeLineService/csharp/Dockerfile",
+                "-t",
+                "${input:registry}.azurecr.io/dapr-workshop/make-line-service-csharp:${input:tagname}",
+                "Vigilantes.DaprWorkshop.MakeLineService/csharp"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "ACR Build ReceiptGenerationService (netcore)",
+            "command": "az",
+            "type": "process",
+            "args": [
+                "acr",
+                "build",
+                "-r",
+                "${input:registry}",
+                "-f",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.ReceiptGenerationService/csharp/Dockerfile",
+                "-t",
+                "${input:registry}.azurecr.io/dapr-workshop/receipt-generation-service-csharp:${input:tagname}",
+                "Vigilantes.DaprWorkshop.ReceiptGenerationService/csharp"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "ACR Build LoyaltyService (netcore)",
+            "command": "az",
+            "type": "process",
+            "args": [
+                "acr",
+                "build",
+                "-r",
+                "${input:registry}",
+                "-f",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.LoyaltyService/csharp/Dockerfile",
+                "-t",
+                "${input:registry}.azurecr.io/dapr-workshop/loyalty-service-csharp:${input:tagname}",
+                "Vigilantes.DaprWorkshop.LoyaltyService/csharp"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "ACR Build VirtualBarista (netcore)",
+            "command": "az",
+            "type": "process",
+            "args": [
+                "acr",
+                "build",
+                "-r",
+                "${input:registry}",
+                "-f",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.VirtualBarista/csharp/Dockerfile",
+                "-t",
+                "${input:registry}.azurecr.io/dapr-workshop/virtual-barista-csharp:${input:tagname}",
+                "Vigilantes.DaprWorkshop.VirtualBarista/csharp"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "ACR Build VirtualCustomers (netcore)",
+            "command": "az",
+            "type": "process",
+            "args": [
+                "acr",
+                "build",
+                "-r",
+                "${input:registry}",
+                "-f",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.VirtualCustomers/csharp/Dockerfile",
+                "-t",
+                "${input:registry}.azurecr.io/dapr-workshop/virtual-customers-csharp:${input:tagname}",
+                "Vigilantes.DaprWorkshop.VirtualCustomers/csharp"
+            ],
+            "problemMatcher": []
+        },
+        // ----- node acr tasks -----
+        {
+            "label": "ACR Build OrderService (nodejs)",
+            "command": "az",
+            "type": "process",
+            "args": [
+                "acr",
+                "build",
+                "-r",
+                "${input:registry}",
+                "-f",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.OrderService/node/Dockerfile",
+                "-t",
+                "${input:registry}.azurecr.io/dapr-workshop/order-service-node:${input:tagname}",
+                "Vigilantes.DaprWorkshop.OrderService/node"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "ACR Build MakeLineService (nodejs)",
+            "command": "az",
+            "type": "process",
+            "args": [
+                "acr",
+                "build",
+                "-r",
+                "${input:registry}",
+                "-f",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.MakeLineService/node/Dockerfile",
+                "-t",
+                "${input:registry}.azurecr.io/dapr-workshop/make-line-service-node:${input:tagname}",
+                "Vigilantes.DaprWorkshop.MakeLineService/node"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "ACR Build ReceiptGenerationService (nodejs)",
+            "command": "az",
+            "type": "process",
+            "args": [
+                "acr",
+                "build",
+                "-r",
+                "${input:registry}",
+                "-f",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.ReceiptGenerationService/node/Dockerfile",
+                "-t",
+                "${input:registry}.azurecr.io/dapr-workshop/receipt-generation-service-node:${input:tagname}",
+                "Vigilantes.DaprWorkshop.ReceiptGenerationService/node"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "ACR Build LoyaltyService (nodejs)",
+            "command": "az",
+            "type": "process",
+            "args": [
+                "acr",
+                "build",
+                "-r",
+                "${input:registry}",
+                "-f",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.LoyaltyService/node/Dockerfile",
+                "-t",
+                "${input:registry}.azurecr.io/dapr-workshop/loyalty-service-node:${input:tagname}",
+                "Vigilantes.DaprWorkshop.LoyaltyService/node"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "ACR Build Virtual Barista (nodejs)",
+            "command": "az",
+            "type": "process",
+            "args": [
+                "acr",
+                "build",
+                "-r",
+                "${input:registry}",
+                "-f",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.VirtualBarista/node/Dockerfile",
+                "-t",
+                "${input:registry}.azurecr.io/dapr-workshop/virtual-barista-node:${input:tagname}",
+                "Vigilantes.DaprWorkshop.VirtualBarista/node"
+            ],
+            "problemMatcher": []
+        },
+        // ----- golang acr tasks -----
+        {
+            "label": "ACR Build OrderService (golang)",
+            "command": "az",
+            "type": "process",
+            "args": [
+                "acr",
+                "build",
+                "-r",
+                "${input:registry}",
+                "-f",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.OrderService/golang/Dockerfile",
+                "-t",
+                "${input:registry}.azurecr.io/dapr-workshop/order-service-golang:${input:tagname}",
+                "Vigilantes.DaprWorkshop.OrderService/golang"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "ACR Build MakeLineService (golang)",
+            "command": "az",
+            "type": "process",
+            "args": [
+                "acr",
+                "build",
+                "-r",
+                "${input:registry}",
+                "-f",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.MakeLineService/golang/Dockerfile",
+                "-t",
+                "${input:registry}.azurecr.io/dapr-workshop/make-line-service-golang:${input:tagname}",
+                "Vigilantes.DaprWorkshop.MakeLineService/golang"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "ACR Build ReceiptGenerationService (golang)",
+            "command": "az",
+            "type": "process",
+            "args": [
+                "acr",
+                "build",
+                "-r",
+                "${input:registry}",
+                "-f",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.ReceiptGenerationService/golang/Dockerfile",
+                "-t",
+                "${input:registry}.azurecr.io/dapr-workshop/receipt-generation-service-golang:${input:tagname}",
+                "Vigilantes.DaprWorkshop.ReceiptGenerationService/golang"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "ACR Build LoyaltyService (golang)",
+            "command": "az",
+            "type": "process",
+            "args": [
+                "acr",
+                "build",
+                "-r",
+                "${input:registry}",
+                "-f",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.LoyaltyService/golang/Dockerfile",
+                "-t",
+                "${input:registry}.azurecr.io/dapr-workshop/loyalty-service-golang:${input:tagname}",
+                "Vigilantes.DaprWorkshop.LoyaltyService/golang"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "ACR Build Virtual Barista (golang)",
+            "command": "az",
+            "type": "process",
+            "args": [
+                "acr",
+                "build",
+                "-r",
+                "${input:registry}",
+                "-f",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.VirtualBarista/golang/Dockerfile",
+                "-t",
+                "${input:registry}.azurecr.io/dapr-workshop/virtual-barista-golang:${input:tagname}",
+                "Vigilantes.DaprWorkshop.VirtualBarista/golang"
+            ],
+            "problemMatcher": []
+        },
+        // ----- java acr tasks -----
+        {
+            "label": "ACR Build OrderService (java)",
+            "command": "az",
+            "type": "process",
+            "args": [
+                "acr",
+                "build",
+                "-r",
+                "${input:registry}",
+                "-f",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.OrderService/java/order-service/Dockerfile",
+                "-t",
+                "${input:registry}.azurecr.io/dapr-workshop/order-service-java:${input:tagname}",
+                "Vigilantes.DaprWorkshop.OrderService/java/order-service"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "ACR Build MakeLineService (java)",
+            "command": "az",
+            "type": "process",
+            "args": [
+                "acr",
+                "build",
+                "-r",
+                "${input:registry}",
+                "-f",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.MakeLineService/java/makeline-service/Dockerfile",
+                "-t",
+                "${input:registry}.azurecr.io/dapr-workshop/make-line-service-java:${input:tagname}",
+                "Vigilantes.DaprWorkshop.MakeLineService/java/makeline-service"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "ACR Build ReceiptGenerationService (java)",
+            "command": "az",
+            "type": "process",
+            "args": [
+                "acr",
+                "build",
+                "-r",
+                "${input:registry}",
+                "-f",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.ReceiptGenerationService/java/receipt-service/Dockerfile",
+                "-t",
+                "${input:registry}.azurecr.io/dapr-workshop/receipt-generation-service-java:${input:tagname}",
+                "Vigilantes.DaprWorkshop.ReceiptGenerationService/java/receipt-service"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "ACR Build LoyaltyService (java)",
+            "command": "az",
+            "type": "process",
+            "args": [
+                "acr",
+                "build",
+                "-r",
+                "${input:registry}",
+                "-f",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.LoyaltyService/java/loyalty-service/Dockerfile",
+                "-t",
+                "${input:registry}.azurecr.io/dapr-workshop/loyalty-service-java:${input:tagname}",
+                "Vigilantes.DaprWorkshop.LoyaltyService/java/loyalty-service"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "ACR Build Virtual Barista (java)",
+            "command": "az",
+            "type": "process",
+            "args": [
+                "acr",
+                "build",
+                "-r",
+                "${input:registry}",
+                "-f",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.VirtualBarista/java/Dockerfile",
+                "-t",
+                "${input:registry}.azurecr.io/dapr-workshop/virtual-barista-java:${input:tagname}",
+                "Vigilantes.DaprWorkshop.VirtualBarista/java"
+            ],
+            "problemMatcher": []
+        },
+        // ----- UI acr task -----
+        {
+            "label": "ACR Build UI",
+            "command": "az",
+            "type": "shell",
+            "args": [
+                "acr",
+                "build",
+                "-r",
+                "${input:registry}",
+                "-f",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.UI/Dockerfile",
+                "-t",
+                "${input:registry}.azurecr.io/dapr-workshop/ui:${input:tagname}",
+                "Vigilantes.DaprWorkshop.UI"
+            ],
+            "problemMatcher": []
+        },        
+    ],
+    
+    "inputs": [
+        {
+            "type": "promptString",
+            "id": "registry",
+            "description": "Azure Container Registry Name",
+            "default": "vigilantes"
+        },
+        {
+            "type": "promptString",
+            "id": "tagname",
+            "description": "Image Tag Name",
+            "default": "1.0.0"
+        }
+    ]
+}
