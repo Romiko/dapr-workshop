@@ -7,10 +7,14 @@ spec:
   version: v1
   metadata:
   - name: redisHost
-    value: localhost:6379
+    secretKeyRef:
+      name: redisHost
+      key: redisHost
   - name: redisPassword
     value: ""
   - name: actorStateStore
     value: "true"
 scopes:
 - loyalty-service
+auth:
+  secretStore: azurekeyvault

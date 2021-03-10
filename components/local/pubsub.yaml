@@ -7,6 +7,15 @@ spec:
   version: v1
   metadata:
   - name: redisHost
-    value: localhost:6379
+    secretKeyRef:
+      name: redisHost
+      key: redisHost
   - name: redisPassword
     value: ""
+scopes:
+- loyalty-service
+- order-service
+- make-line-service
+- receipt-generation-service
+auth:
+  secretStore: azurekeyvault

@@ -1,0 +1,19 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: azurekeyvault
+  namespace: default
+spec:
+  type: secretstores.azure.keyvault
+  version: v1
+  metadata:
+  - name: vaultName
+    value: romikodapr
+  - name: spnTenantId
+    value: "fcf19986-792e-43b5-947e-da75a0014605"
+  - name: spnClientId
+    value: "a44dbe7b-9446-4b22-854a-f536d413932c"
+  - name: spnCertificateFile
+    value : "D:\\d\\dapr-workshop-edgpartners\\components\\local\\romikodapr-romikodapr-20210310.pfx"
+scopes:
+- loyalty-service
