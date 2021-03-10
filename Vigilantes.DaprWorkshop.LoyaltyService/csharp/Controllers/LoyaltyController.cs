@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using CloudNative.CloudEvents;
 using Dapr;
+using Dapr.Client;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
@@ -17,10 +18,15 @@ namespace Vigilantes.DaprWorkshop.LoyaltyService.Controllers
         private readonly HttpClient _httpClient;
         private readonly ILogger<LoyaltyController> _logger;
 
-        public LoyaltyController(IHttpClientFactory httpClientFactory, ILogger<LoyaltyController> logger)
+        private readonly DaprClient _daprClient;
+
+        const string StateStore = "statestore";
+
+        public LoyaltyController(IHttpClientFactory httpClientFactory, ILogger<LoyaltyController> logger, DaprClient daprClient)
         {
             _httpClient = httpClientFactory.CreateClient();
             _logger = logger;
+            _daprClient = daprClient;
         }
 
         [HttpPost("/orders")]
@@ -30,7 +36,13 @@ namespace Vigilantes.DaprWorkshop.LoyaltyService.Controllers
             var orderSummary = ((JToken)cloudEvent.Data).ToObject<OrderSummary>();
             _logger.LogInformation("Received Order Summary: {@OrderSummary}", orderSummary);
 
-            // TODO: Challenge 3 - Retrieve and update customer loyalty points
+            var customerLoyalityPoints = await _daprClient.GetStateAsync<int>(StateStore, orderSummary.LoyaltyId);
+            _logger.LogInformation("Current Points Balance: LoyalityId {0}: {1}", orderSummary.LoyaltyId, customerLoyalityPoints);
+            var newPoints = Math.Ceiling(orderSummary.OrderTotal);
+            customerLoyalityPoints = customerLoyalityPoints + Convert.ToInt32(newPoints);
+            await _daprClient.SaveStateAsync(StateStore, orderSummary.LoyaltyId, customerLoyalityPoints);
+            _logger.LogInformation("New Points Balance: LoyalityId {0}: {1}", orderSummary.LoyaltyId, customerLoyalityPoints);
+
             return Ok();
         }
     }
