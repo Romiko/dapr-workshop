@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Dapr.Client;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -17,10 +18,13 @@ namespace Vigilantes.DaprWorkshop.OrderService.Controllers
     {
         private readonly ILogger<OrderController> _logger;
         private readonly HttpClient _httpClient;
-        public OrderController(IHttpClientFactory httpClientFactory, ILogger<OrderController> logger)
+        private readonly DaprClient _daprClient;
+
+        public OrderController(IHttpClientFactory httpClientFactory, ILogger<OrderController> logger, DaprClient daprClient )
         {
             _httpClient = httpClientFactory.CreateClient();
             _logger = logger;
+            _daprClient = daprClient;
         }
 
         [HttpPost]
@@ -33,8 +37,8 @@ namespace Vigilantes.DaprWorkshop.OrderService.Controllers
             var orderSummary = CreateOrderSummary(order);
             _logger.LogInformation("Created Order Summary: {@OrderSummary}", orderSummary);
 
-            // TODO: Challenge 2 - Publish an OrderSummary message via Dapr
-            return Ok("Bummer. Business logic and pub/sub isn't implemented yet but, hey, at least your POST worked and you should see the order in the log! YOINK!");
+            await _daprClient.PublishEventAsync<OrderSummary>("pubsub", "newOrder", orderSummary);
+            return Ok("Publish Success");
         }
 
         private static OrderSummary CreateOrderSummary(CustomerOrder order)
