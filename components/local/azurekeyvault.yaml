@@ -17,3 +17,6 @@ spec:
     value : "D:\\d\\dapr-workshop-edgpartners\\components\\local\\romikodapr-romikodapr-20210310.pfx"
 scopes:
 - loyalty-service
+- order-service
+- make-line-service
+- receipt-generation-service
