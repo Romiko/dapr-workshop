@@ -2,6 +2,7 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using CloudNative.CloudEvents;
+using Dapr;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
@@ -23,6 +24,7 @@ namespace Vigilantes.DaprWorkshop.LoyaltyService.Controllers
         }
 
         [HttpPost("/orders")]
+        [Topic("pubsub", "newOrder")]
         public async Task<IActionResult> UpdateLoyalty(CloudEvent cloudEvent)
         {
             var orderSummary = ((JToken)cloudEvent.Data).ToObject<OrderSummary>();

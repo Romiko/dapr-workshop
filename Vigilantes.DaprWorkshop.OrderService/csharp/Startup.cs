@@ -20,7 +20,8 @@ namespace Vigilantes.DaprWorkshop.OrderService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers()
-            .AddDapr(builder => builder.UseHttpEndpoint(Configuration.GetValue<string>("DAPR_HTTP_ENDPOINT"))
+            .AddDapr(builder => builder
+            .UseHttpEndpoint(Configuration.GetValue<string>("DAPR_HTTP_ENDPOINT"))
             .UseGrpcEndpoint(Configuration.GetValue<string>("DAPR_GRPC_ENDPOINT")));
 
             services.AddHttpClient();

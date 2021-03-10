@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using CloudNative.CloudEvents;
+using Dapr;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
@@ -21,7 +22,7 @@ namespace Vigilantes.DaprWorkshop.ReceiptGenerationService.Controllers
             _logger = logger;
         }
 
-        [HttpPost]
+        [Topic("pubsub", "newOrder")]
         [Route("/orders")]
         public async Task<IActionResult> GenerateReceipt(CloudEvent cloudEvent)
         {

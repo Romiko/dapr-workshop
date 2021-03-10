@@ -19,7 +19,10 @@ namespace Vigilantes.DaprWorkshop.LoyaltyService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers()
+            .AddDapr(builder => builder
+            .UseHttpEndpoint(Configuration.GetValue<string>("DAPR_HTTP_ENDPOINT"))
+            .UseGrpcEndpoint(Configuration.GetValue<string>("DAPR_GRPC_ENDPOINT")));
             services.AddHttpClient();
             services.AddMvc(opts =>
             {
@@ -42,7 +45,9 @@ namespace Vigilantes.DaprWorkshop.LoyaltyService
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapSubscribeHandler();
             });
+            app.UseCloudEvents();
         }
     }
 }

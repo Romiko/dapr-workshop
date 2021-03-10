@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using CloudNative.CloudEvents;
+using Dapr;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.SignalR.Management;
@@ -33,8 +34,10 @@ namespace Vigilantes.DaprWorkshop.MakeLineService.Controllers
         }
 
         [HttpPost("/orders")]
+        [Topic("pubsub", "newOrder")]
         public async Task<IActionResult> MakeOrder(CloudEvent cloudEvent)
         {
+
             // Deserialize incoming order summary
             var orderSummary = ((JToken)cloudEvent.Data).ToObject<OrderSummary>();
             _logger.LogInformation("Received Order: {@OrderSummary}", orderSummary);
@@ -56,7 +59,9 @@ namespace Vigilantes.DaprWorkshop.MakeLineService.Controllers
         {
             // This method will be called by the signalr client when connecting to
             // the azure signalr service. It will return an access token and the 
-            // endpoint details for the client to use when sending and receiving events.            
+            // endpoint details for the client to use when sending and receiving events.     
+
+            return Ok();       
             if (_serviceManager == null)
             {
                 var connectionString = await GetSignalrConnectionString();

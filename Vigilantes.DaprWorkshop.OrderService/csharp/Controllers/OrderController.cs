@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Dapr;
 using Dapr.Client;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
