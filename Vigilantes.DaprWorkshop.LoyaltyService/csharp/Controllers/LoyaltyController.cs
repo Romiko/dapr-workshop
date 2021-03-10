@@ -35,13 +35,23 @@ namespace Vigilantes.DaprWorkshop.LoyaltyService.Controllers
         {
             var orderSummary = ((JToken)cloudEvent.Data).ToObject<OrderSummary>();
             _logger.LogInformation("Received Order Summary: {@OrderSummary}", orderSummary);
+            
+            var pointsEarned = Convert.ToInt32(Math.Ceiling(orderSummary.OrderTotal));
+            var loyaltySummary = await _daprClient.GetStateAsync<LoyaltySummary>(StateStore, orderSummary.LoyaltyId);
+            if (loyaltySummary == null)
+            {
+                loyaltySummary = new LoyaltySummary()
+                {
+                    LoyaltyId = orderSummary.LoyaltyId,
+                    CustomerName = orderSummary.CustomerName,
+                };
+            }
 
-            var customerLoyalityPoints = await _daprClient.GetStateAsync<int>(StateStore, orderSummary.LoyaltyId);
-            _logger.LogInformation("Current Points Balance: LoyalityId {0}: {1}", orderSummary.LoyaltyId, customerLoyalityPoints);
-            var newPoints = Math.Ceiling(orderSummary.OrderTotal);
-            customerLoyalityPoints = customerLoyalityPoints + Convert.ToInt32(newPoints);
-            await _daprClient.SaveStateAsync(StateStore, orderSummary.LoyaltyId, customerLoyalityPoints);
-            _logger.LogInformation("New Points Balance: LoyalityId {0}: {1}", orderSummary.LoyaltyId, customerLoyalityPoints);
+            _logger.LogInformation("Current Points Balance: LoyalityId {0}: {1}", orderSummary.LoyaltyId, loyaltySummary.PointTotal);
+            loyaltySummary.PointsEarned = pointsEarned;
+            loyaltySummary.PointTotal += loyaltySummary.PointsEarned;
+            await _daprClient.SaveStateAsync(StateStore, orderSummary.LoyaltyId, loyaltySummary);
+            _logger.LogInformation("New Points Balance: LoyalityId {0}: {1}", orderSummary.LoyaltyId, loyaltySummary.PointTotal);
 
             return Ok();
         }
