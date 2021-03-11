@@ -11,10 +11,13 @@ spec:
       name: redisHost
       key: redisHost
   - name: redisPassword
-    value: ""
+    secretKeyRef:
+      name: redisPasswd
+      key: redisPasswd
   - name: actorStateStore
     value: "true"
 scopes:
 - loyalty-service
+- make-line-service
 auth:
   secretStore: azurekeyvault

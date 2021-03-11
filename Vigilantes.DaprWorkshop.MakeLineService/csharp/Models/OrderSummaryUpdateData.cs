@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -10,6 +9,6 @@ namespace Vigilantes.DaprWorkshop.MakeLineService.Models
         public string Target { get; set; }
 
         [JsonProperty("arguments")]
-        public List<object> Arguments { get; set; }        
+        public List<OrderSummary> Arguments { get; set; }        
     }
 }

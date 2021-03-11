@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using CloudNative.CloudEvents;
 using Dapr;
+using Dapr.Client;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.SignalR.Management;
@@ -21,16 +22,20 @@ namespace Vigilantes.DaprWorkshop.MakeLineService.Controllers
         #region  Data members
 
         private readonly ILogger<MakelineController> _logger;
+        private readonly DaprClient _daprClient;
         private readonly HttpClient _httpClient;
         private IServiceManager _serviceManager;
+
+        const string StateStore = "statestore";
 
         #endregion
 
         public MakelineController(IHttpClientFactory httpClientFactory,
-                                  ILogger<MakelineController> logger)
+                                  ILogger<MakelineController> logger, DaprClient daprClient)
         {
             _httpClient = httpClientFactory.CreateClient();
             _logger = logger;
+            _daprClient = daprClient;
         }
 
         [HttpPost("/orders")]
@@ -42,17 +47,34 @@ namespace Vigilantes.DaprWorkshop.MakeLineService.Controllers
             var orderSummary = ((JToken)cloudEvent.Data).ToObject<OrderSummary>();
             _logger.LogInformation("Received Order: {@OrderSummary}", orderSummary);
 
-            // TODO: Challenge 4 - Load current list of orders to be made from state store
-            //                   - Add incoming order to the list
-            //                   - Save modified list to state store 
-            
+            var orders = await _daprClient.GetStateAsync<OrderSummaryUpdateData>(StateStore, orderSummary.StoreId);
+            if (orders == null)
+            {
+                orders = new OrderSummaryUpdateData
+                {
+                    Arguments = new List<OrderSummary>()
+                };
+            }
+
+            orders.Target = orderSummary.StoreId;
+            orders.Arguments.Add(orderSummary);
+
+            await _daprClient.SaveStateAsync(StateStore, orders.Target, orders);
+
             // TODO: Challenge 6 - Call the SignalR output binding with the incoming order summary
 
             return Ok();
         }
 
-        // TODO: Challenge 4 - Implement a method to get all orders
-        //                   - Implement a method to delete an order
+        [HttpGet("/orders/{storeId}")]
+        public async Task<ActionResult<OrderSummaryUpdateData>> GetOrders(string storeId)
+        {
+            var orders = await _daprClient.GetStateAsync<OrderSummaryUpdateData>(StateStore, storeId);
+            _logger.LogInformation("Get Orders: {@orders}", orders);
+            return orders;
+        }
+
+
         [EnableCors("CorsPolicy")]
         [HttpPost("/negotiate")]
         public async Task<ActionResult> Negotiate()
@@ -61,7 +83,7 @@ namespace Vigilantes.DaprWorkshop.MakeLineService.Controllers
             // the azure signalr service. It will return an access token and the 
             // endpoint details for the client to use when sending and receiving events.     
 
-            return Ok();       
+            return Ok();
             if (_serviceManager == null)
             {
                 var connectionString = await GetSignalrConnectionString();
@@ -84,7 +106,7 @@ namespace Vigilantes.DaprWorkshop.MakeLineService.Controllers
             //    https://github.com/dapr/docs/tree/master/howto/send-events-with-output-bindings
             //    https://github.com/dapr/docs/blob/master/reference/specs/bindings/signalr.md 
             //    Option: use the OrderSummaryUpdateData object
-            
+
             return new OkResult();
         }
 
