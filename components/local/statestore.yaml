@@ -11,9 +11,7 @@ spec:
       name: redisHost
       key: redisHost
   - name: redisPassword
-    secretKeyRef:
-      name: redisPasswd
-      key: redisPasswd
+    value: ""
   - name: actorStateStore
     value: "true"
 scopes:
