@@ -74,6 +74,27 @@ namespace Vigilantes.DaprWorkshop.MakeLineService.Controllers
             return orders;
         }
 
+        [HttpDelete("/orders/delete/{storeId}/{orderId}")]
+        public async Task<IActionResult> DeleteOrder(string storeId, string orderId)
+        {
+            var orders = await _daprClient.GetStateAsync<OrderSummaryUpdateData>(StateStore, storeId);
+            var index = orders.Arguments.FindIndex(o => o.StoreId == storeId && o.OrderId == Guid.Parse(orderId));
+
+            if (index >= 0)
+            {
+                orders.Arguments.RemoveAt(index);
+                _logger.LogInformation("Delete Order: {0}", orderId);
+                await _daprClient.SaveStateAsync(StateStore, orders.Target, orders);
+                return Ok();
+
+            }
+            else
+            {
+                return NotFound();
+            }
+
+        }
+
 
         [EnableCors("CorsPolicy")]
         [HttpPost("/negotiate")]

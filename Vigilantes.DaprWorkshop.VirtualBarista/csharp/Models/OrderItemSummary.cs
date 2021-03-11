@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace Vigilantes.DaprWorkshop.VirtualBarista.Models
@@ -12,5 +13,14 @@ namespace Vigilantes.DaprWorkshop.VirtualBarista.Models
 
         [JsonProperty("quantity")]
         public int Quantity { get; set; }
+    }
+
+        public class OrderSummaryDto
+    {
+        [JsonProperty("target")]
+        public string Target { get; set; }
+
+        [JsonProperty("arguments")]
+        public List<OrderSummary> Arguments { get; set; }        
     }
 }

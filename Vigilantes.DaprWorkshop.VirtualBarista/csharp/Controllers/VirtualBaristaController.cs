@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Dapr.Client;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Vigilantes.DaprWorkshop.VirtualBarista.Models;
@@ -20,11 +21,14 @@ namespace Vigilantes.DaprWorkshop.VirtualBarista.Controllers
         private readonly ILogger<VirtualBaristaController> _logger;
         private readonly Random _random;
 
-        public VirtualBaristaController(IHttpClientFactory httpClientFactory, ILogger<VirtualBaristaController> logger)
+        private readonly DaprClient _daprClient;
+
+        public VirtualBaristaController(IHttpClientFactory httpClientFactory, ILogger<VirtualBaristaController> logger, DaprClient daprClient)
         {
             _httpClient = httpClientFactory.CreateClient();
             _logger = logger;
             _random = new Random();
+            _daprClient = daprClient;
         }
 
         [HttpPost]
@@ -90,15 +94,17 @@ namespace Vigilantes.DaprWorkshop.VirtualBarista.Controllers
 
         private async Task<List<OrderSummary>> GetOrders()
         {
-            // TODO: Challenge 4 - Call the Makeline service via Dapr to get orders
-            await Task.Delay(5000);
+            var result = await _daprClient.InvokeMethodAsync<OrderSummaryDto>(HttpMethod.Get, "make-line-service", $"/orders/{StoreId}");
+            if (result != null)
+            {
+                return result.Arguments;
+            }
             return Enumerable.Empty<OrderSummary>().ToList();
         }
 
         private async Task CompleteOrder(OrderSummary orderSummary)
         {
-            // TODO: Challenge 4 - Call the Makeline service via Dapr to complete the order
-            await Task.Delay(5000);
+             await _daprClient.InvokeMethodAsync(HttpMethod.Delete, "make-line-service", $"/delete/orders/{orderSummary.StoreId}/{orderSummary.OrderId}");
         }
     }
 }
