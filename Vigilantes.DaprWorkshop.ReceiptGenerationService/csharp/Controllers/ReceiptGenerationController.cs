@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using CloudNative.CloudEvents;
 using Dapr;
+using Dapr.Client;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
@@ -16,10 +17,13 @@ namespace Vigilantes.DaprWorkshop.ReceiptGenerationService.Controllers
         private readonly HttpClient _httpClient;
         private readonly ILogger<ReceiptGenerationConsumerController> _logger;
 
-        public ReceiptGenerationConsumerController(IHttpClientFactory httpClientFactory, ILogger<ReceiptGenerationConsumerController> logger)
+        private readonly DaprClient _daprClient;
+
+        public ReceiptGenerationConsumerController(IHttpClientFactory httpClientFactory, ILogger<ReceiptGenerationConsumerController> logger, DaprClient daprClient)
         {
             _httpClient = httpClientFactory.CreateClient();
             _logger = logger;
+            _daprClient = daprClient;
         }
 
         [Topic("pubsub", "newOrder")]
@@ -29,8 +33,8 @@ namespace Vigilantes.DaprWorkshop.ReceiptGenerationService.Controllers
             var orderSummary = ((JToken)cloudEvent.Data).ToObject<OrderSummary>();
 
             _logger.LogInformation("Writing Order Summary (receipt) to storage: {@OrderSummary}", orderSummary);
-
-            // TODO: Challenge 5 - Store receipt via a Dapr Output Binding that can be used as a data sink
+            await  _daprClient.InvokeBindingAsync("orders", "create",orderSummary);
+            
             return Ok();
         }
     }
