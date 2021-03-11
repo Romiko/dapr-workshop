@@ -1,8 +1,9 @@
 apiVersion: dapr.io/v1alpha1
 kind: Component
 metadata:
-  name: orders
+  name: bloborders
   namespace: default
+spec:
   type: bindings.azure.blobstorage
   version: v1
   metadata:
@@ -15,9 +16,7 @@ metadata:
   - name: container
     value: dapr
   - name: decodeBase64
-    value: true
-  - name: getBlobRetryCount
-    value: 2
+    value: false
 scopes:
 - receipt-generation-service
 auth:

@@ -104,7 +104,7 @@ namespace Vigilantes.DaprWorkshop.VirtualBarista.Controllers
 
         private async Task CompleteOrder(OrderSummary orderSummary)
         {
-             await _daprClient.InvokeMethodAsync(HttpMethod.Delete, "make-line-service", $"/delete/orders/{orderSummary.StoreId}/{orderSummary.OrderId}");
+             await _daprClient.InvokeMethodAsync(HttpMethod.Delete, "make-line-service", $"/orders/delete/{orderSummary.StoreId}/{orderSummary.OrderId}");
         }
     }
 }

@@ -85,14 +85,8 @@ namespace Vigilantes.DaprWorkshop.MakeLineService.Controllers
                 orders.Arguments.RemoveAt(index);
                 _logger.LogInformation("Delete Order: {0}", orderId);
                 await _daprClient.SaveStateAsync(StateStore, orders.Target, orders);
-                return Ok();
-
             }
-            else
-            {
-                return NotFound();
-            }
-
+             return Ok();
         }
 
 

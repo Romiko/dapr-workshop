@@ -8,6 +8,6 @@ spec:
   version: v1
   metadata:
   - name: schedule
-    value: "15 * * * * *"
+    value: "@every 15s"
 scopes:
 - virtual-barista

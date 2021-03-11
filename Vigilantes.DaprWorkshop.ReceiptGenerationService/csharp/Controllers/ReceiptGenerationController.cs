@@ -33,7 +33,7 @@ namespace Vigilantes.DaprWorkshop.ReceiptGenerationService.Controllers
             var orderSummary = ((JToken)cloudEvent.Data).ToObject<OrderSummary>();
 
             _logger.LogInformation("Writing Order Summary (receipt) to storage: {@OrderSummary}", orderSummary);
-            await  _daprClient.InvokeBindingAsync("orders", "create",orderSummary);
+            await  _daprClient.InvokeBindingAsync("bloborders", "create", orderSummary);
             
             return Ok();
         }
