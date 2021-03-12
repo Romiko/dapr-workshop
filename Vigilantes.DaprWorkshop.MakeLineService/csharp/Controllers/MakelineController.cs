@@ -80,13 +80,14 @@ namespace Vigilantes.DaprWorkshop.MakeLineService.Controllers
         {
             var orders = await _daprClient.GetStateAsync<OrderSummaryUpdateData>(StateStore, storeId);
             var index = orders.Arguments.FindIndex(o => o.StoreId == storeId && o.OrderId == Guid.Parse(orderId));
-
+            var completeOrder = orders.Arguments[index];
             if (index >= 0)
             {
                 orders.Arguments.RemoveAt(index);
                 _logger.LogInformation("Delete Order: {0}", orderId);
                 await _daprClient.SaveStateAsync(StateStore, orders.Target, orders);
             }
+            await SendOrderUpdate("completedOrder", completeOrder);
              return Ok();
         }
 
