@@ -1,0 +1,19 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: signalr
+  namespace: default
+spec:
+  type: bindings.azure.signalr
+  version: v1
+  metadata:
+  - name: connectionString
+    secretKeyRef:
+      name: signalrConnectionString
+      key: signalrConnectionString
+  - name: hub
+    value: orders
+scopes:
+- make-line-service
+auth:
+  secretStore: azurekeyvault

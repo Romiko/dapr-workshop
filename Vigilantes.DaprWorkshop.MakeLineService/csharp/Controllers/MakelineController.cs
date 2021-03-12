@@ -27,6 +27,7 @@ namespace Vigilantes.DaprWorkshop.MakeLineService.Controllers
         private IServiceManager _serviceManager;
 
         const string StateStore = "statestore";
+        const string StoreId = "Redmond";
 
         #endregion
 
@@ -121,15 +122,21 @@ namespace Vigilantes.DaprWorkshop.MakeLineService.Controllers
             //    https://github.com/dapr/docs/tree/master/howto/send-events-with-output-bindings
             //    https://github.com/dapr/docs/blob/master/reference/specs/bindings/signalr.md 
             //    Option: use the OrderSummaryUpdateData object
+            var message = new OrderSummaryUpdate {
+                Data = new OrderSummaryUpdateData {
+                    Arguments = new List<OrderSummary> {orderSummary},
+                    Target = StoreId
+                },
 
+            };
+            await  _daprClient.InvokeBindingAsync("signalr", "create", message);
             return new OkResult();
         }
 
         private async Task<string> GetSignalrConnectionString()
         {
-            // TODO: Challenge 6 - Call the secrets component to retrieve the connection string
-            // Reference: https://github.com/dapr/docs/blob/master/reference/api/secrets_api.md
-            return "";
+            var secret = await _daprClient.GetSecretAsync("azurekeyvault","signalrConnectionString");
+            return secret.Values.First();
         }
 
     }
