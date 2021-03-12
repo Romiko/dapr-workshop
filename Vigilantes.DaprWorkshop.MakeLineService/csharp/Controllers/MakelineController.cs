@@ -101,7 +101,7 @@ namespace Vigilantes.DaprWorkshop.MakeLineService.Controllers
             // the azure signalr service. It will return an access token and the 
             // endpoint details for the client to use when sending and receiving events.     
 
-            return Ok();
+            //return Ok();
             if (_serviceManager == null)
             {
                 var connectionString = await GetSignalrConnectionString();
