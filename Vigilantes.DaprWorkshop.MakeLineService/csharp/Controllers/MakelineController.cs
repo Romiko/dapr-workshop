@@ -67,6 +67,7 @@ namespace Vigilantes.DaprWorkshop.MakeLineService.Controllers
             return Ok();
         }
 
+        [EnableCors("CorsPolicy")]
         [HttpGet("/orders/{storeId}")]
         public async Task<ActionResult<OrderSummaryUpdateData>> GetOrders(string storeId)
         {
@@ -75,7 +76,7 @@ namespace Vigilantes.DaprWorkshop.MakeLineService.Controllers
             return orders;
         }
 
-        [HttpDelete("/orders/delete/{storeId}/{orderId}")]
+        [HttpDelete("/orders/{storeId}/{orderId}")]
         public async Task<IActionResult> DeleteOrder(string storeId, string orderId)
         {
             var orders = await _daprClient.GetStateAsync<OrderSummaryUpdateData>(StateStore, storeId);
@@ -133,7 +134,7 @@ namespace Vigilantes.DaprWorkshop.MakeLineService.Controllers
                 },
                 Metadata = meta 
             };
-            await  _daprClient.InvokeBindingAsync("signalr", "create", message.Data, meta );
+            await  _daprClient.InvokeBindingAsync("signalr", "create", message.Data );
             return new OkResult();
         }
 
