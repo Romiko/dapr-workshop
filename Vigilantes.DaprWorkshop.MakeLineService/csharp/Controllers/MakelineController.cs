@@ -63,7 +63,7 @@ namespace Vigilantes.DaprWorkshop.MakeLineService.Controllers
             await _daprClient.SaveStateAsync(StateStore, orders.Target, orders);
 
             // TODO: Challenge 6 - Call the SignalR output binding with the incoming order summary
-
+            await SendOrderUpdate("newOrder", orderSummary);
             return Ok();
         }
 
@@ -121,15 +121,18 @@ namespace Vigilantes.DaprWorkshop.MakeLineService.Controllers
             // References: 
             //    https://github.com/dapr/docs/tree/master/howto/send-events-with-output-bindings
             //    https://github.com/dapr/docs/blob/master/reference/specs/bindings/signalr.md 
+
+            var meta = new Dictionary<string, string>();
+            meta.Add("hub", "orders");
             //    Option: use the OrderSummaryUpdateData object
             var message = new OrderSummaryUpdate {
                 Data = new OrderSummaryUpdateData {
                     Arguments = new List<OrderSummary> {orderSummary},
-                    Target = StoreId
+                    Target = "newOrder"
                 },
-
+                Metadata = meta 
             };
-            await  _daprClient.InvokeBindingAsync("signalr", "create", message);
+            await  _daprClient.InvokeBindingAsync("signalr", "create", message.Data, meta );
             return new OkResult();
         }
 
