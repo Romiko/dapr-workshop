@@ -70,3 +70,13 @@ Once you are ready, please begin by installing the [prerequisites](./prerequisit
 
 \
 <sub> *Built with love by the Dapr Vigilantes* <sup>TM</sup> </sub>
+
+
+
+
+REDIS CHECKS
+
+docker run --rm -it --link dapr_redis redis redis-cli -h dapr_redis
+keys *
+hget "loyalty-service||2" data
+XRANGE  newOrder - +
