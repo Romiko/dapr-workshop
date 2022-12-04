@@ -338,6 +338,11 @@
                 "Install ReceiptGenerationService (nodejs)",
                 "Install VirtualBarista (nodejs)"
             ],
+            "options": {
+                "env": {
+                    "NODE_OPTIONS" : "--openssl-legacy-provider"
+                }
+            },
             "problemMatcher": []
         },
         // ----- dapr tasks -----
