@@ -14,6 +14,8 @@ spec:
     secretKeyRef:
       name: redisPasswd
       key: redisPasswd
+  - name: enableTLS
+    value: "true"
   - name: actorStateStore
     value: "true"
 scopes:
