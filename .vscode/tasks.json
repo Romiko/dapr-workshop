@@ -327,7 +327,12 @@
             "label": "Run UI (nodejs)",
             "type": "npm",
             "script": "serve",
-            "path": "Vigilantes.DaprWorkshop.UI/"
+            "path": "Vigilantes.DaprWorkshop.UI/",
+            "options": {
+                "env": {
+                    "NODE_OPTIONS" : "--openssl-legacy-provider"
+                }
+            }
         },
         {
             "label": "Install Solution (nodejs)",
