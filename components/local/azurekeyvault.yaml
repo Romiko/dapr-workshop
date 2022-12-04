@@ -14,7 +14,7 @@ spec:
   - name: spnClientId
     value: "a44dbe7b-9446-4b22-854a-f536d413932c"
   - name: spnCertificateFile
-    value : "C:\\dev\\dapr-workshop\\components\\local\\romikodapr-romikodapr-20210310.pfx"
+    value : "C:\\dev\\dapr-workshop\\components\\local\\romikodapr-romikodapr-20221202.pfx"
 scopes:
 - loyalty-service
 - order-service
