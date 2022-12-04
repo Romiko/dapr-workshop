@@ -31,7 +31,7 @@ namespace Vigilantes.DaprWorkshop.LoyaltyService.Controllers
 
         [HttpPost("/orders")]
         [Topic("pubsub", "newOrder")]
-        public async Task<IActionResult> UpdateLoyalty(CloudEvent cloudEvent)
+        public async Task<IActionResult> UpdateLoyalty(CloudNative.CloudEvents.CloudEvent cloudEvent)
         {
             var orderSummary = ((JToken)cloudEvent.Data).ToObject<OrderSummary>();
             _logger.LogInformation("Received Order Summary: {@OrderSummary}", orderSummary);

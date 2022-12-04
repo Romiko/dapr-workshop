@@ -41,7 +41,7 @@ namespace Vigilantes.DaprWorkshop.MakeLineService.Controllers
 
         [HttpPost("/orders")]
         [Topic("pubsub", "newOrder")]
-        public async Task<IActionResult> MakeOrder(CloudEvent cloudEvent)
+        public async Task<IActionResult> MakeOrder(CloudNative.CloudEvents.CloudEvent cloudEvent)
         {
 
             // Deserialize incoming order summary

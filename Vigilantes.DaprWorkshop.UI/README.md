@@ -27,3 +27,12 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+# Troubleshoot
+npm config set msvs_version 2022
+
+
+$env:NODE_OPTIONS = '--openssl-legacy-provider'
+or
+export NODE_OPTIONS=--openssl-legacy-provider

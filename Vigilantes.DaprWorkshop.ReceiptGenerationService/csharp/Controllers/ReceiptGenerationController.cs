@@ -28,7 +28,7 @@ namespace Vigilantes.DaprWorkshop.ReceiptGenerationService.Controllers
 
         [Topic("pubsub", "newOrder")]
         [Route("/orders")]
-        public async Task<IActionResult> GenerateReceipt(CloudEvent cloudEvent)
+        public async Task<IActionResult> GenerateReceipt(CloudNative.CloudEvents.CloudEvent cloudEvent)
         {
             var orderSummary = ((JToken)cloudEvent.Data).ToObject<OrderSummary>();
 

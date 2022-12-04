@@ -74,9 +74,14 @@ Once you are ready, please begin by installing the [prerequisites](./prerequisit
 
 
 
-REDIS CHECKS
+# REDIS CHECKS
 
 docker run --rm -it --link dapr_redis redis redis-cli -h dapr_redis
 keys *
 hget "loyalty-service||2" data
 XRANGE  newOrder - +
+
+
+
+# Tips
+https://docs.dapr.io/developing-applications/ides/vscode/vscode-how-to-debug-multiple-dapr-apps/
